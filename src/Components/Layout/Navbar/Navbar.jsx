@@ -8,7 +8,7 @@ const NavbarWrapper = () => {
   return (
     <div className="stock-tracker--navbar">
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Stock Tracker</Navbar.Brand>
+        <Navbar.Brand href="/">Stock Tracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" as="ul">
