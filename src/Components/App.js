@@ -5,14 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Navbar from "./Layout/Navbar/Navbar";
+import Companies from "./Companies/Companies";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Redirect exact from="/" to="companies" />
+        <Route path="/" component={Navbar} />
         <Switch>
-          <Route path="/" component={Navbar} />
+          <Route path="/companies" component={Companies} />
         </Switch>
       </div>
     </Router>
