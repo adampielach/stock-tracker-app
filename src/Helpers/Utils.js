@@ -88,8 +88,7 @@ export const refreshCompanies = function() {
       processCompany(processedResponse);
     });
   });
-
-  return trackedCompanies;
+  return getCompanies();
 };
 
 export const getCompanies = function() {

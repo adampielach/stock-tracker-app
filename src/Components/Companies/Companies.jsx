@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Company from "./Company/Company";
 import "./Companies.css";
 
@@ -12,9 +12,13 @@ export default function Companies() {
     setCompany(filteredCompanies);
     localStorage.setItem("companies", JSON.stringify(filteredCompanies));
   };
-
   // set the initial state
   const [companies, setCompany] = useState(getCompanies());
+  // const [isUpdated, updateCompanies] = useState(false);
+
+  useEffect(() => {
+    setCompany(refreshCompanies());
+  }, []);
 
   return (
     <div className="Companies">
