@@ -39,7 +39,7 @@ export default function() {
       </Form.Group>
       <Button
         type="submit"
-        disabled={companyInput.length >= 3 ? "" : "disabled"}
+        disabled={companyInput.length >= 2 ? "" : "disabled"}
       >
         Track
       </Button>

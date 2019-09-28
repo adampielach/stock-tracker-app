@@ -25,9 +25,7 @@ export const searchCompany = async function(query) {
 };
 
 export const processCompany = function(data) {
-  let companies = JSON.parse(localStorage.getItem("companies"))
-    ? JSON.parse(localStorage.getItem("companies"))
-    : [];
+  let companies = getCompanies();
   let updatedCompanies = [...companies];
   let index = companies.findIndex(el => el.symbol === data.symbol);
 
@@ -49,4 +47,9 @@ export const stripResponse = function(data) {
   });
 
   return newObject;
+};
+
+export const getCompanies = function() {
+  const companies = JSON.parse(localStorage.getItem("companies"));
+  return companies ? companies : [];
 };

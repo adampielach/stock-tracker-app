@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import Company from "./Company/Company";
 
+import { getCompanies } from "../../Helpers/Utils";
+
 export default function Companies() {
-  // helper functions for local storage
+  const deleteCompany = function(symbol) {
+    const trackedCompanies = getCompanies();
+    let filteredCompanies = trackedCompanies.filter(el => el.symbol !== symbol);
 
-  const getCompanies = function() {
-    const companies = JSON.parse(localStorage.getItem("companies"));
-    return companies ? companies : [];
-  };
-
-  const deleteCompany = function(company) {
-    let newCompaniesArray = getCompanies();
-    let companyIndex = newCompaniesArray.findIndex(el => el.name === company);
-    if (companyIndex > -1) {
-      newCompaniesArray.splice(companyIndex, 1);
-      setCompany(newCompaniesArray);
-      localStorage.setItem("Companies", JSON.stringify(newCompaniesArray));
-    }
-    return;
+    setCompany(filteredCompanies);
+    localStorage.setItem("companies", JSON.stringify(filteredCompanies));
   };
 
   // set the initial state
@@ -26,7 +18,11 @@ export default function Companies() {
   return (
     <div className="Companies">
       {companies.map(company => (
-        <Company name={company.name} deleteCompany={deleteCompany} />
+        <Company
+          key={company.name}
+          name={company.name}
+          deleteCompany={deleteCompany}
+        />
       ))}
     </div>
   );
