@@ -1,9 +1,5 @@
 import React from "react";
 
-export default function Company(props) {
-  return (
-    <div onClick={props.deleteCompany.bind(this, props.symbol)}>
-      {props.name}
-    </div>
-  );
+export default function Company({ data, deleteCompany }) {
+  return <div onClick={deleteCompany.bind(this, data.symbol)}>{data.name}</div>;
 }
