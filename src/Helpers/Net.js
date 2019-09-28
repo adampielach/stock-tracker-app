@@ -3,7 +3,7 @@ import axios from "axios";
 class Net {
   constructor() {
     this.alphaVantageUrl = "https://www.alphavantage.co/query?";
-    this.autocompleteUrl =
+    this.getLogoUrl =
       "https://autocomplete.clearbit.com/v1/companies/suggest?query=";
 
     this.alphaVantageAPIKey = "apikey=NDU8IARVNC0WYVFG";
@@ -14,7 +14,7 @@ class Net {
       let baseURL =
         api === "alpha"
           ? this.alphaVantageUrl + this.alphaVantageAPIKey + "&"
-          : this.autocompleteUrl;
+          : this.getLogoUrl;
 
       axios
         .get(baseURL + query)

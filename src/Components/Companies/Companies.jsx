@@ -5,7 +5,8 @@ export default function Companies() {
   // helper functions for local storage
 
   const getCompanies = function() {
-    return JSON.parse(localStorage.getItem("Companies"));
+    const companies = JSON.parse(localStorage.getItem("companies"));
+    return companies ? companies : [];
   };
 
   const deleteCompany = function(company) {
