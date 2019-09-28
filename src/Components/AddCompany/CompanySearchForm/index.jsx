@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import API from "../../../Helpers/Api";
-import { searchCompany } from "../../../Helpers/Utils";
+import {
+  searchCompany,
+  processCompany,
+  stripResponse
+} from "../../../Helpers/Utils";
 
 export default function() {
   const [companyInput, setCompanyInput] = useState("");
@@ -12,10 +15,12 @@ export default function() {
     e.preventDefault();
     if (companyInput !== "") {
       const response = await searchCompany(companyInput);
-
-      return;
+      processCompany(stripResponse(response));
+      setCompanyInput("");
+      alert("Company Added!");
+    } else {
+      alert("Please provide appropriate symbol.");
     }
-    alert("Please provide appropriate symbol.");
   };
 
   return (
@@ -32,7 +37,12 @@ export default function() {
           Provide the stock exchange symbol of a company you want to track
         </Form.Text>
       </Form.Group>
-      <Button type="submit">Track</Button>
+      <Button
+        type="submit"
+        disabled={companyInput.length >= 3 ? "" : "disabled"}
+      >
+        Track
+      </Button>
     </Form>
   );
 }

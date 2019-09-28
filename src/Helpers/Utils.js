@@ -15,11 +15,38 @@ export const searchCompany = async function(query) {
   );
 
   let mergedResponses = {
-    ...search.data.bestMatches[0],
-    ...daily.data["Time Series (Daily)"][
-      Object.keys(daily.data["Time Series (Daily)"])[0]
+    ...search.bestMatches[0],
+    ...daily["Time Series (Daily)"][
+      Object.keys(daily["Time Series (Daily)"])[0]
     ],
-    ...globalQuote.data["Global Quote"]
+    ...globalQuote["Global Quote"]
   };
   return mergedResponses;
+};
+
+export const processCompany = function(data) {
+  let companies = JSON.parse(localStorage.getItem("companies"))
+    ? JSON.parse(localStorage.getItem("companies"))
+    : [];
+  let updatedCompanies = [...companies];
+  let index = companies.findIndex(el => el.symbol === data.symbol);
+
+  if (index > -1) {
+    updatedCompanies[index] = { ...updatedCompanies[index], ...data };
+  } else {
+    updatedCompanies.push(data);
+  }
+
+  localStorage.setItem("companies", JSON.stringify(updatedCompanies));
+};
+
+export const stripResponse = function(data) {
+  let response = { ...data };
+  let newObject = {};
+  Object.entries(response).forEach(entry => {
+    newObject[entry[0].substring(entry[0].indexOf(" ") + 1)] = entry[1];
+    return newObject;
+  });
+
+  return newObject;
 };
