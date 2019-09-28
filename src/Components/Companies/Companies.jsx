@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Company from "./Company/Company";
+import "./Companies.css";
 
-import { getCompanies } from "../../Helpers/Utils";
+import { getCompanies, refreshCompanies } from "../../Helpers/Utils";
 
 export default function Companies() {
   const deleteCompany = function(symbol) {

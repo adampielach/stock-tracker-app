@@ -1,0 +1,46 @@
+.Company {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.Company--image {
+  width: 65px;
+  height: 64px;
+}
+
+.Company--image img {
+  width: 100%;
+}
+
+.Company span {
+  margin-right: 0.5rem;
+}
+
+.Company--content {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.Company--content-row:first-of-type h5 {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.Company--remove {
+  display: none;
+  position: absolute;
+  content: "X";
+  font-size: 1rem;
+  font-weight: bold;
+  right: 0;
+  padding: 0.2rem;
+}
+
+.Company:hover .Company--remove {
+  display: block;
+  cursor: pointer;
+}
