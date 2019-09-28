@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import API from "../../../Helpers/Api";
+import { searchCompany } from "../../../Helpers/Utils";
 
 export default function() {
   const [companyInput, setCompanyInput] = useState("");
@@ -10,28 +11,7 @@ export default function() {
   const addCompany = async function(e) {
     e.preventDefault();
     if (companyInput !== "") {
-      let symbolResponse = await API.stocks.getCompanyData(
-        "SYMBOL_SEARCH",
-        "keywords=" + companyInput
-      );
-
-      let globalResponse = await API.stocks.getCompanyData(
-        "GLOBAL_QUOTE",
-        "symbol=" + companyInput
-      );
-
-      let mergedResponse = {
-        ...symbolResponse.bestMatches[0],
-        ...globalResponse["Global Quote"]
-      };
-
-      let globalResponseArray = {};
-
-      for (let key of Object.entries(mergedResponse)) {
-        let currentKey = key[0].substring(key[0].indexOf(" ") + 1);
-        globalResponseArray[currentKey] = key[1];
-      }
-      console.log(globalResponseArray);
+      const response = await searchCompany(companyInput);
 
       return;
     }
